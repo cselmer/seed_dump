@@ -15,6 +15,6 @@ end
 
 group :test do
   gem 'rspec', '~> 3.7.0'
-  gem 'sqlite3', '~> 1.0'
+  gem 'sqlite3', '~> 1.3.6'
   gem 'database_cleaner', '~> 1.0'
 end

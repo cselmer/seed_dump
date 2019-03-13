@@ -15,6 +15,8 @@ class Rails
 
       Object.const_set('YetAnotherSample', Class.new(ActiveRecord::Base))
 
+      Object.const_set('AndEvenMoreSample', Class.new(ActiveRecord::Base))
+
       Object.const_set('NoTableModel', Class.new(ActiveRecord::Base))
 
       Object.const_set('EmptyModel', Class.new(ActiveRecord::Base))
@@ -78,6 +80,13 @@ module Helpers
         t.datetime 'updated_at', :null => false
       end
 
+      create_table 'and_even_more_samples', :force => true do |t|
+        t.string 'email'
+        t.string 'first_name'
+        t.string 'last_name'
+        t.string 'favorite_color'
+      end
+
       create_table 'empty_models', force: true
     end
   end
@@ -88,5 +97,20 @@ module Helpers
     Sample.create!
 
     ChildSample.create!
+  end
+end
+
+class AttributeAnonymizer
+  def self.anonymize(attribute, value)
+    case attribute
+    when 'email'
+      'fred@mailinator.com'
+    when 'first_name'
+      'Fred'
+    when 'last_name'
+      'Frederson'
+    else
+      value
+    end
   end
 end

@@ -101,6 +101,22 @@ describe SeedDump do
       end
     end
 
+    context 'with an anonymize_with parameter' do
+      it 'should not raise an exception' do
+        SeedDump.dump(AndEvenMoreSample, anonymize_with: 'AttributeAnonymizer')
+      end
+
+      it 'should apply the anonymizer' do
+        sample_for_anonymization = FactoryBot.create(:and_even_more_sample)
+
+        expected_anonymized_output = "AndEvenMoreSample.create!([\n  " +
+          "{email: \"fred@mailinator.com\", first_name: \"Fred\", last_name: \"Frederson\", favorite_color: \"green\"}" +
+          "\n])\n"
+
+        SeedDump.dump([sample_for_anonymization], anonymize_with: 'AttributeAnonymizer').should eq(expected_anonymized_output)
+      end
+    end
+
     context 'Array' do
       it 'should return the dump of the models passed in' do
         SeedDump.dump(Sample.all.to_a, batch_size: 2).should eq(expected_output)

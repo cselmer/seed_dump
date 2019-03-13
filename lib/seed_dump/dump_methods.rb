@@ -31,10 +31,11 @@ class SeedDump
     end
 
     def dump_attribute_new(attribute, value, options)
-      options[:import] ? value_to_s(value) : "#{attribute}: #{value_to_s(value)}"
+      options[:import] ? value_to_s(attribute, value, options) : "#{attribute}: #{value_to_s(attribute, value, options)}"
     end
 
-    def value_to_s(value)
+    def value_to_s(attribute, value, options)
+      value = anonymize(attribute, value, options) if options[:anonymize_with]
       value = case value
               when BigDecimal, IPAddr
                 value.to_s
@@ -49,6 +50,10 @@ class SeedDump
               end
 
       value.inspect
+    end
+
+    def anonymize(attribute, value, options)
+      options[:anonymize_with].constantize.anonymize(attribute, value)
     end
 
     def range_to_string(object)
