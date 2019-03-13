@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0".freeze) if s.respond_to? :required_rubygems_version=
   s.require_paths = ["lib".freeze]
   s.authors = ["Rob Halff".freeze, "Ryan Oblak".freeze]
-  s.date = "2018-05-08"
+  s.date = "2019-03-13"
   s.description = "Dump (parts) of your database to db/seeds.rb to get a headstart creating a meaningful seeds.rb file".freeze
   s.email = "rroblak@gmail.com".freeze
   s.extra_rdoc_files = [
@@ -33,6 +33,7 @@ Gem::Specification.new do |s|
     "seed_dump.gemspec",
     "spec/dump_methods_spec.rb",
     "spec/environment_spec.rb",
+    "spec/factories/and_even_more_samples.rb",
     "spec/factories/another_samples.rb",
     "spec/factories/samples.rb",
     "spec/factories/yet_another_samples.rb",
@@ -41,7 +42,7 @@ Gem::Specification.new do |s|
   ]
   s.homepage = "https://github.com/rroblak/seed_dump".freeze
   s.licenses = ["MIT".freeze]
-  s.rubygems_version = "2.7.6".freeze
+  s.rubygems_version = "2.7.8".freeze
   s.summary = "{Seed Dumper for Rails}".freeze
 
   if s.respond_to? :specification_version then
